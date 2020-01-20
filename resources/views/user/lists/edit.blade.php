@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="card">
-                <div class="card-header">Add new lyst</div>
+                <div class="card-header">Edit lyst</div>
 
                 <div class="card-body">
                     @if ($errors->any())
@@ -18,12 +18,13 @@
                         </ul>
                     </div>
                     @endif
-                    <form method="POST" action="{{ route('user.lists.store') }}">
+                    <form method="POST" action="{{ route('user.lists.update', $listModel->id) }}">
+                        <input type="hidden" name="_method" value="PUT">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
 
                             <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" />
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $listModel->name) }}" />
                         </div>
                         <div class="form-group">
                             <label for="is_public">Make lyst public</label>

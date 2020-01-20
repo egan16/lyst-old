@@ -23,7 +23,6 @@ class ListController extends Controller
      */
     public function index()
     {
-        // //$lists = ListModel::all();
         $listModels = ListModel::where('user_uuid', Auth::id())->get();
 
         return view('user.lists.index')->with([
@@ -87,7 +86,10 @@ class ListController extends Controller
      */
     public function edit($id)
     {
-        //
+      $listModel = ListModel::findOrFail($id);
+      return view('user.lists.edit')->with([
+        'listModel' => $listModel
+      ]);
     }
 
     /**
@@ -99,7 +101,20 @@ class ListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $listModel = ListModel::findOrFail($id);
+
+        $request->validate([
+          'name' => 'required|max:191',
+          'is_public' => 'required',
+        ]);
+
+        $listModel->name = $request->input('name');
+        $listModel->is_public = $request->input('is_public');
+        $listModel->user_uuid = Auth::id();
+
+        $listModel->save();
+
+        return redirect()->route('user.lists.index');
     }
 
     /**
