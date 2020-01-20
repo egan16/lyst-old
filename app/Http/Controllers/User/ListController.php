@@ -24,11 +24,11 @@ class ListController extends Controller
     public function index()
     {
         // //$lists = ListModel::all();
-        // $listModels = ListModel::where('user_uuid', Auth::id())->get();
-        //
-        // return view('user.lists.index')->with([
-        //   'listModels' => $listModels
-        // ]);
+        $listModels = ListModel::where('user_uuid', Auth::id())->get();
+
+        return view('user.lists.index')->with([
+          'listModels' => $listModels
+        ]);
     }
 
     /**
@@ -73,7 +73,10 @@ class ListController extends Controller
      */
     public function show($id)
     {
-        //
+      $listModel = ListModel::findOrFail($id);
+      return view('user.lists.show')->with([
+        'listModel' => $listModel
+      ]);
     }
 
     /**
@@ -107,6 +110,8 @@ class ListController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $listModel = ListModel::findOrFail($id);
+        $listModel->delete();
+        return redirect()->route('user.lists.index');
     }
 }

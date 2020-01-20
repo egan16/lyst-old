@@ -15,6 +15,8 @@
                     @endif
 
                     You are logged in as an ordinary user!
+                    <br>
+                    <a href="{{ route('user.lists.index') }}">View your Lysts</a>
                 </div>
             </div>
         </div>

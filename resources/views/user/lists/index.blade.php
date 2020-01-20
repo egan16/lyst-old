@@ -1,4 +1,4 @@
-{{-- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">
@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    Visits
+                    Lysts
                     <a href="{{ route('user.lists.create') }}" class="btn btn-primary float-right">Add</a>
                 </div>
                 <div class="card-body">
@@ -21,11 +21,14 @@
                             <th>Created by</th>
                         </thead>
                         <tbody>
+
+                          {{-- CHANGE ListModel TO list ????? --}}
+
                             @foreach ($listModels as $listModel)
                             <tr data-id="{{ $listModel->id }}">
-                                <td>{{ $listModel->date }}</td>
-                                <td>{{ $listModel->time }}</td>
-                                <td>{{ $listModel->user->name }}</td>
+                                <td>{{ $listModel->name }}</td>
+                                <td>{{ $listModel->is_public }}</td>
+                                <td>{{ $listModel->user_uuid }}</td>
                                 <td>
                                     <a href="{{ route('user.lists.show', $listModel->id) }}" class="btn btn-default">View</a>
                                     <a href="{{ route('user.lists.edit', $listModel->id) }}" class="btn btn-warning">Edit</a>
@@ -40,13 +43,9 @@
                         </tbody>
                     </table>
                     @endif
-
-
-                    {{-- @endforeach --}}
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection --}}
+@endsection
