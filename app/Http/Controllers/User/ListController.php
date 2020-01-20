@@ -4,9 +4,18 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\ListModel;
+use Auth;
 
 class ListController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('role:user');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,12 @@ class ListController extends Controller
      */
     public function index()
     {
+        // //$lists = ListModel::all();
+        // $listModels = ListModel::where('user_uuid', Auth::id())->get();
         //
+        // return view('user.lists.index')->with([
+        //   'listModels' => $listModels
+        // ]);
     }
 
     /**
@@ -24,7 +38,7 @@ class ListController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.lists.create');
     }
 
     /**
@@ -35,7 +49,20 @@ class ListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+          'name' => 'required|max:191',
+          'is_public' => 'required',
+        ]);
+
+        $listModel = new ListModel();
+        $listModel->name = $request->input('name');
+        $listModel->is_public = $request->input('is_public');
+        $listModel->user_uuid = Auth::id();
+
+        $listModel->save();
+
+        return redirect()->route('user.lists.index');
     }
 
     /**

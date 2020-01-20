@@ -41,9 +41,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //should this be hasMany???
     public function listModel(){
       return $this->belongsTo('App\ListModel');
     }
+
+    // public function create(){
+    //   Auth::user()->listModel()->create($listMo);
+    // }
 
     public function roles()
     {
