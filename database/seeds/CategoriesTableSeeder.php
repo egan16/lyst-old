@@ -12,28 +12,28 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-      $category = new Category();
-      $category->name = 'Sports';
-      $category->save();
+      $category_sport = new Category();
+      $category_sport->name = 'Sports';
+      $category_sport->save();
 
-      $category = new Category();
-      $category->name = 'Fashion';
-      $category->save();
+      $category_fashionchristmas = new Category();
+      $category_fashionchristmas->name = 'Fashion';
+      $category_fashionchristmas->save();
 
-      $category = new Category();
-      $category->name = 'Christmas';
-      $category->save();
+      $category_christmas = new Category();
+      $category_christmas->name = 'Christmas';
+      $category_christmas->save();
 
-      $category = new Category();
-      $category->name = 'Beauty';
-      $category->save();
+      $category_beauty = new Category();
+      $category_beauty->name = 'Beauty';
+      $category_beauty->save();
 
-      $category = new Category();
-      $category->name = 'Electronics';
-      $category->save();
+      $category_electronics = new Category();
+      $category_electronics->name = 'Electronics';
+      $category_electronics->save();
 
-      $category = new Category();
-      $category->name = 'Toys';
-      $category->save();
+      $category_toys = new Category();
+      $category_toys->name = 'Toys';
+      $category_toys->save();
     }
 }
