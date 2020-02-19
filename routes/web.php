@@ -28,5 +28,18 @@ Route::get('/user/lists/create', 'User\ListController@create')->name('user.lists
 Route::get('/user/lists/{id}', 'User\ListController@show')->name('user.lists.show');
 Route::post('/user/lists/store', 'User\ListController@store')->name('user.lists.store');
 Route::get('/user/lists/{id}/edit', 'User\ListController@edit')->name('user.lists.edit');
-Route::put('/user/lists{id}', 'User\ListController@update')->name('user.lists.update');
-Route::delete('/user/lists{id}', 'User\ListController@destroy')->name('user.lists.destroy');
+Route::put('/user/lists/{id}', 'User\ListController@update')->name('user.lists.update');
+Route::delete('/user/lists/{id}', 'User\ListController@destroy')->name('user.lists.destroy');
+
+
+//make productlist controller
+//make show for this
+Route::delete('/user/lists/{list_id}/products{id}', 'User\ProductController@destroy')->name('user.products.destroy');
+
+
+
+//products crud
+Route::get('/user/lists/{id}/products/create', 'User\ProductController@create')->name('user.lists.products.create');
+Route::post('/user/lists/{id}/products/store', 'User\ProductController@store')->name('user.lists.products.store');
+Route::get('/user/products/{id}', 'User\ProductController@show')->name('user.products.show');
+Route::delete('/user/products/{id}', 'User\ProductController@destroy')->name('user.products.destroy');

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ListModel;
 use Auth;
+use App\Product;
 
 class ListController extends Controller
 {
@@ -51,7 +52,7 @@ class ListController extends Controller
 
         $request->validate([
           'name' => 'required|max:191',
-          'is_public' => 'required',
+          'is_public' => 'required|boolean',
         ]);
 
         $listModel = new ListModel();
@@ -73,6 +74,10 @@ class ListController extends Controller
     public function show($id)
     {
       $listModel = ListModel::findOrFail($id);
+      // $products = $listModel->products()->get();
+
+      // dd($listModel->products);
+
       return view('user.lists.show')->with([
         'listModel' => $listModel
       ]);
@@ -126,6 +131,7 @@ class ListController extends Controller
     public function destroy($id)
     {
         $listModel = ListModel::findOrFail($id);
+        $listModel->products()->detach();
         $listModel->delete();
         return redirect()->route('user.lists.index');
     }

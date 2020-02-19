@@ -1,5 +1,6 @@
+{{-- navbar --}}
 @extends('layouts.app')
-
+{{-- content --}}
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -16,7 +17,7 @@
 
                     You are logged in as an ordinary user!
                     <br>
-                    <a href="{{ route('user.lists.index') }}">View your Lysts</a>
+                    <a href="{{ route('user.lists.index') }}" class="hover:text-safetyorange">View your Lysts</a>
                 </div>
             </div>
         </div>
