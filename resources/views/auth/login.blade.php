@@ -11,8 +11,8 @@
 {{-- header end --}}
 
 {{-- form start --}}
-<div class="flex justify-center my-25">
-    <div class="w-full max-w-xs">
+<div class="flex justify-center">
+    <div class="w-full max-w-xs my-25">
         <form method="POST" action="{{ route('login') }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
           @csrf
             <div class="my-4">

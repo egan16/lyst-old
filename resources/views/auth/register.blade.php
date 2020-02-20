@@ -1,7 +1,93 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+
+{{-- header start --}}
+<header class="flex items-center justify-between flex-wrap mx-8 my-3">
+    <div class="flex items-center flex-shrink-0">
+        <h1 class="w-16 text-4xl font-black text-mineshaft">{{ __('Register') }}</h1>
+    </div>
+</header>
+{{-- header end --}}
+
+{{-- form start --}}
+<div class="flex justify-center my-25">
+    <div class="w-full max-w-xs">
+        <form method="POST" action="{{ route('register') }}" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            @csrf
+            <div class="my-4">
+                <input id="name" type="textname" name="name" value="{{ old('name') }}" required autocomplete="name" placeholder="Username"
+                  class="@error('name') is-invalid @enderror input border border-silver text-base text-dovegrey appearance-none rounded w-full px-2 py-2 focus focus:border-dovegrey focus:outline-none active:outline-none active:border-dovegrey"
+                  autofocus>
+                </input>
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="my-4">
+                {{-- <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+          Username
+        </label> --}}
+                <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="Email Address"
+                  class="@error('email') is-invalid @enderror input border border-silver text-base text-dovegrey appearance-none rounded w-full px-2 py-2 focus focus:border-dovegrey focus:outline-none active:outline-none active:border-dovegrey"
+                  autofocus>
+                </input>
+                @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="my-4">
+                {{-- <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Password
+        </label> --}}
+                <input id="password" type="password" name="password" required autocomplete="current-password" placeholder="Password"
+                  class="@error('password') is-invalid @enderror input border border-silver text-base text-dovegrey appearance-none rounded w-full px-2 py-2 focus focus:border-dovegrey focus:outline-none active:outline-none active:border-dovegrey"
+                  autofocus>
+                </input>
+                @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="mb-6">
+                {{-- <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+          Password
+        </label> --}}
+                <input id="password-confirm" type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password"
+                  class="@error('password-confirm') is-invalid @enderror input border border-silver text-base text-dovegrey appearance-none rounded w-full px-2 py-2 focus focus:border-dovegrey focus:outline-none active:outline-none active:border-dovegrey"
+                  autofocus>
+                </input>
+                @error('password-confirm')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="flex flex-col items-center justify-between">
+                <button class="bg-mantis px-4 py-3 w-full rounded text-sm font-semibold text-white focus:outline-none text-center" type="submit">
+                    Register
+                </button>
+                <a href="{{ route('login') }}" class="text-sm text-dovegrey py-3 w-full text-left focus:outline-none">
+                    Already have an account? <span class="text-blue-500 hover:text-safetyorange">Log in</span>
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{{-- form end --}}
+
+
+
+
+
+{{-- OLD CODE --}}
+
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -18,9 +104,9 @@
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -32,9 +118,9 @@
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                 @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -46,9 +132,9 @@
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
                             </div>
                         </div>
@@ -73,5 +159,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection
