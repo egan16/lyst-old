@@ -1,88 +1,63 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="card">
-                <div class="card-header">
-                    <h2> {{ $listModel->name }} </h2>
-                    <a href="{{ route('user.lists.products.create', $listModel->id) }}" class="btn btn-primary float-right">Add</a>
-                </div>
-                <div class="card-body">
 
-                    <table class="table table-hover">
-                        <tbody>
-                            <tr>
-                                <td>Name</td>
-                                <td>{{ $listModel->name }}</td>
-                            </tr>
-                            <tr>
-                                <td>Public</td>
-                                <td>{{ $listModel->is_public }}</td>
-                            </tr>
-                            <tr>
-                                <td>Created By</td>
-                                <td>{{ $listModel->user_uuid }}</td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-                    <a href="{{ route('user.lists.index') }}" class="btn btn-default">Back</a>
-                    <a href="{{ route('user.lists.edit', $listModel->id) }}" class="btn btn-warning">Edit</a>
-                    <form style="display:inline-block" method="POST" action="{{ route('user.lists.destroy', $listModel->id) }}">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="form-control btn btn-danger">Delete</a>
-                    </form>
-                </div>
-            </div>
-        </div>
+{{-- header and add button start --}}
+<header class="flex items-center justify-between flex-wrap mx-8 my-3">
+    <div class="flex items-center flex-shrink-0">
+        <h1 class="w-auto text-4xl font-black text-mineshaft">{{ $listModel->name }}</h1>
     </div>
-    <br>
-
-    <h1>{{ $listModel->name }}'s Products</h1>
-    @foreach ($listModel->products as $product)
-    <br>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="card">
-                <div class="card-header">
-                    {{ $product->title }}
-                </div>
-                <div class="card-body">
-                    <table class="table table hover">
-                        <tbody>
-                            <tr>
-                                <td>Price</td>
-                                <td>{{ $product->price }}</td>
-                            </tr>
-                            <tr>
-                                <td>Product Number</td>
-                                <td>{{ $product->product_num }}</td>
-                            </tr>
-                            <tr>
-                                <td>URL</td>
-                                <td>{{ $product->url }}</td>
-                            </tr>
-                            {{-- <tr>
-                                <td>Cost</td>
-                                <td>{{ $product->store }}</td>
-                            </tr> --}}
-                        </tbody>
-                    </table>
-                    <a href="{{ route('user.products.show', $product->id) }}" class="btn btn-default">View</a>
-                    {{-- <a href="{{ route('admin.doctors.index') }}" class="btn btn-default">Back</a>
-                    <a href="{{ route('admin.visits.edit', $visit->id) }}" class="btn btn-warning">Edit</a>
-                    <form style="display:inline-block" method="POST" action="{{ route('admin.visits.destroy', $visit->id) }}">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="form-control btn btn-danger">Delete</a>
-                    </form> --}}
-                </div>
-            </div>
-        </div>
+    <div class="w-auto block sm:flex sm:items-center sm:w-auto">
+        <a href="{{ route('user.lists.products.create', $listModel->id) }}" class="inline-block mt-4 sm:inline-block sm:mt-0 mr-4 bg-mantis text-white py-2 px-4 rounded-full">Add</a>
     </div>
-    @endforeach
+</header>
+{{-- header and add button end --}}
+
+
+<div class="container my-12 mx-auto px-4 md:px-12">
+    <div class="flex flex-wrap -mx-1 lg:-mx-4">
+
+        @if (count($listModel->products) ===0)
+        <p class="text-2xl text-mineshaftail">This lyst is empty!</p>
+        @else
+
+        @foreach ($listModel->products as $product)
+          <!-- Column -->
+          <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
+
+              <!-- Article -->
+              <article class="overflow-hidden rounded-lg shadow-lg">
+
+
+                  <header class="flex items-center justify-between leading-tight p-2 md:p-4">
+                      <h1 class="text-2xl">
+                          <a class="no-underline hover:text-safetyorange text-mineshaft" href="{{ route('user.products.show', $product->id) }}">
+                              {{ $product->title }}
+                          </a>
+                      </h1>
+                      <p class="text-mineshaft text-sm">
+                          {{ $product->timestamps }}
+                      </p>
+
+                  </header>
+
+                  <div class="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left mb-4">
+                      <p class="text-sm leading-tight text-gray-600">{{ $product->price }}</p>
+                      <p class="text-sm leading-tight text-gray-600">{{ $product->product_num }}</p>
+                      <p class="text-sm leading-tight text-gray-600">{{ $product->url }}</p>
+                      {{-- <p class="text-sm leading-tight text-gray-600">{{ $product->store->name }}</p> --}}
+                  </div>
+
+              </article>
+              <!-- END Article -->
+
+
+          </div>
+          <!-- END Column -->
+          @endforeach
+          @endif
+    </div>
 </div>
+
+
 @endsection

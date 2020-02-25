@@ -8,7 +8,7 @@
     <div class="flex items-center flex-shrink-0">
         <h1 class="w-16 text-4xl font-black text-mineshaft">Lysts</h1>
     </div>
-    <div class="w-full block sm:flex sm:items-center sm:w-auto">
+    <div class="w-auto block sm:flex sm:items-center sm:w-auto">
         <a href="{{ route('user.lists.create') }}" class="inline-block mt-4 sm:inline-block sm:mt-0 mr-4 bg-mantis text-white py-2 px-4 rounded-full">Add</a>
     </div>
 </header>

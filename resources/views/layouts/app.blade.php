@@ -37,27 +37,27 @@
         {{-- logo end --}}
 
         {{-- nav items start --}}
-        <div class="w-full block sm:flex sm:items-center sm:w-auto">
+        <div class="w-auto sm:flex sm:items-center sm:w-auto">
 
             <div>
                 <!-- Authentication Links start-->
                 @guest
-                <a href="{{ route('login') }}" class="block mt-4 sm:inline-block sm:mt-0 text-mineshaft hover:text-safetyorange mr-4">
+                <a href="{{ route('login') }}" class="mt-4 sm:inline-block sm:mt-0 text-mineshaft hover:text-safetyorange mr-4">
                     {{ __('Login') }}
                 </a>
                 @if (Route::has('register'))
 
-                <a href="{{ route('register') }}" class="block mt-4 sm:inline-block sm:mt-0 text-mineshaft hover:text-safetyorange mr-4">
+                <a href="{{ route('register') }}" class="mt-4 sm:inline-block sm:mt-0 text-mineshaft hover:text-safetyorange mr-4">
                     {{ __('Register') }}
                 </a>
                 @endif
                 @else
-                <a href="{{ url('/home') }}" class="block mt-4 sm:inline-block sm:mt-0 text-mineshaft hover:text-safetyorange mr-4">
+                <a href="{{ url('/home') }}" class="mt-4 sm:inline-block sm:mt-0 text-mineshaft hover:text-safetyorange mr-4">
                     {{ Auth::user()->name }}
                 </a>
 
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                  document.getElementById('logout-form').submit();" class="block mt-4 sm:inline-block sm:mt-0 text-dovegrey hover:text-safetyorange mr-4">
+                  document.getElementById('logout-form').submit();" class="mt-4 sm:inline-block sm:mt-0 text-dovegrey hover:text-safetyorange mr-4">
                     {{ __('Logout') }}
                 </a>
 
@@ -77,6 +77,8 @@
     <main class="py-4">
         @yield('content')
     </main>
+
+
 </body>
 
 </html>
